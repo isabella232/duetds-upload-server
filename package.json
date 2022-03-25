@@ -14,11 +14,11 @@
     "start:prod": "NODE_ENV=production npm run server:up",
     "start:prod:watch": "npm run start:prod -- -- --watch",
     "start:dev:watch": "npm run start:dev -- -- --watch",
-    "server:up": "node src/server/server.js",
-    "server:up:watch": "node src/server/server.js --watch",
-    "koa:serve": "node src/server/koa-server.js",
-    "koa:serve:ci": "CI=true node src/server/koa-server.js",
-    "koa:serve:watch": "nodemon src/server/koa-server.js"
+    "server:up": "node server.js",
+    "server:up:watch": "node server.js --watch",
+    "koa:serve": "node server.js",
+    "koa:serve:ci": "CI=true node server.js",
+    "koa:serve:watch": "nodemon server.js"
   },
   "private": true,
   "dependencies": {
