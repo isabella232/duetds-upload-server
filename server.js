@@ -230,19 +230,28 @@ process.on("SIGTERM", function () {
 process.on("exit", function () {
   // You need to use a synchronous, blocking function, here.
   // Not streams or even console.log, which are non-blocking.
+<<<<<<< HEAD
   if (livelinessResult) {
     console.log(chalk.blue(`exit:  Koa exited `))
   }
+=======
+    console.log(chalk.blue(`exit:  Koa exited `))
+>>>>>>> dc81f63 (wip)
 })
 
 process.on("uncaughtException", function (err) {
   if (err.code === "EADDRINUSE") {
+<<<<<<< HEAD
     if (testIfAllreadyRunning()) {
       console.log(chalk.blue(`EADDRINUSE:  Koa exited (there's already a Koa instance running on port ${port})  `))
     } else {
       console.log(chalk.yellow(`EADDRINUSE:  Koa exited (there's already something running on port ${port})  `))
     }
     process.exit(0)
+=======
+    console.log(chalk.yellow(`EADDRINUSE:  Koa exited (there's already something running on port ${port})  `))
+    process.exit(1)
+>>>>>>> dc81f63 (wip)
   } else {
     // console.log(err)
     // process.exit(1)

@@ -9,6 +9,7 @@ const config = Object.assign(
   {
     configName: "production",
     env: "production",
+<<<<<<< HEAD
     koaLog: false,
     watchPaths: {
       components: getDir("components/lib/"),
@@ -18,6 +19,9 @@ const config = Object.assign(
       css: getDir("css/lib/"),
       server: getDir("server/src/"),
     },
+=======
+    koaLog: false
+>>>>>>> dc81f63 (wip)
   },
   watching
 )
