@@ -1,0 +1,253 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample duetds upload server   see more at [http://duetds.com](http://duetds.com)",
+    "version": "1.0.0",
+    "title": "DuetDS upload Server",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "duetdesignsystem@lahitapiola.fi"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "duetds-upload-server.duetds.com",
+  "basePath": "/",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/ok": {
+      "get": {
+        "tags": [
+          "ok"
+        ],
+        "summary": "Check if server is up",
+        "description": "",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ok"
+        ],
+        "summary": "Check if server is up",
+        "description": "",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ok"
+        ],
+        "summary": "Check if server is up",
+        "description": "",
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/uploads": {
+      "post": {
+        "tags": [
+          "uploads"
+        ],
+        "summary": "Send multiform data to upload server",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "uploads",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "The uploaded file data",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "succes",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string",
+                  "description": "and identification Key for the file, that can be used to create an operation on the file by the client post upload"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "Url to the file that was uploaded"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error 400, occured",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "default": "Error 400, occured"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "400"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error 404, occured",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "default": "Error 404, occured"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "404"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Error 413, occured",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "default": "Error 413, occured"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "413"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Error 415, occured",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "default": "Error 415, occured"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "415"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "499": {
+            "description": "Error 499, occured",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "default": "Error 499, occured"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "499"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error 500, occured",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "default": "Error 500, occured"
+                    },
+                    "type": {
+                      "type": "string",
+                      "default": "500"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "uploads"
+        ],
+        "summary": "Delete file by id",
+        "description": "dummy implementation of a delete handler",
+        "operationId": "uploads.delete",
+        "produces": [
+          "text"
+        ],
+        "responses": {
+          "202": {
+            "description": "Success, pending 202",
+            "schema": {
+              "type": "string",
+              "default": "ok",
+              "description": "ok"
+            }
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Duet",
+    "url": "http://duetds.com"
+  }
+}

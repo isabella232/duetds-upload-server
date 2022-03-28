@@ -113,7 +113,7 @@ app.use(cors())
 
 //this file endpoint can respond with various responses depending on what the file is called
 //it looks for any HTTP status codes in the filename and will respond with the ones it knows below
-router.post("/upload", async ctx => {
+router.post("/uploads", async ctx => {
   const file = ctx.request.files.file
 
   const fileMetaData = ctx.request.body
@@ -214,39 +214,6 @@ resolved to:
 ${JSON.stringify(compRequest,null,2)}`);
   */
   })
-})
-
-
-// When onchange fires it will kill the service, catch the kill signal and fireoff an SSE event first
-process.on("SIGTERM", function () {
-  events.emit("data", JSON.stringify({ date: new Date(), reloading: true }))
-  setTimeout(() => {
-    console.log(chalk.blue(`SIGTERM: Koa closed`))
-    process.exit(0)
-  }, 1)
-  return 0
-})
-
-process.on("exit", function () {
-  // You need to use a synchronous, blocking function, here.
-  // Not streams or even console.log, which are non-blocking.
-  if (livelinessResult) {
-    console.log(chalk.blue(`exit:  Koa exited `))
-  }
-})
-
-process.on("uncaughtException", function (err) {
-  if (err.code === "EADDRINUSE") {
-    if (testIfAllreadyRunning()) {
-      console.log(chalk.blue(`EADDRINUSE:  Koa exited (there's already a Koa instance running on port ${port})  `))
-    } else {
-      console.log(chalk.yellow(`EADDRINUSE:  Koa exited (there's already something running on port ${port})  `))
-    }
-    process.exit(0)
-  } else {
-    // console.log(err)
-    // process.exit(1)
-  }
 })
 
 app.listen(port)
