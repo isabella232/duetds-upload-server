@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const path = require("path")
 const findUp = require("find-up")
 const lernaRoot = findUp.sync(
@@ -10,6 +11,8 @@ const lernaRoot = findUp.sync(
 
 const getDir = item => path.resolve(lernaRoot, "packages", item)
 
+=======
+>>>>>>> dc81f63 (wip)
 module.exports = {
   configName: "default",
   koaProcessName: "duet-koa",
@@ -17,6 +20,7 @@ module.exports = {
   chokidarProcessName: "duet-koa",
   env: "development",
   watch: false,
+<<<<<<< HEAD
   port: 3334,
   upload: true,
   uploadPath: "./uploads",
@@ -41,4 +45,10 @@ module.exports = {
   prototypes: getDir("components/src/prototypes"),
   components: getDir("components/src/components"),
   duetBuild: getDir("components/lib/duet"),
+=======
+  port: process.env.PORT || 80,
+  upload: true,
+  uploadPath: "./uploads",
+  uploadInstantDelete: true
+>>>>>>> dc81f63 (wip)
 }

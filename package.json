@@ -5,12 +5,25 @@
   "bugs": {
     "email": "duetdesignsystem@lahitapiola.fi"
   },
+<<<<<<< HEAD
   "license": "UNLICENSED",
   "author": "LocalTapiola Services Ltd <duetdesignsystem@lahitapiola.fi>",
   "scripts": {
     "test": "npm run test:changed",
     "start:dev": "npm run server:up",
     "start": "npm run start:prod",
+=======
+  "main": "server.js",
+  "license": "UNLICENSED",
+  "author": "LocalTapiola Services Ltd <duetdesignsystem@lahitapiola.fi>",
+  "scripts": {
+    "stop": "pm2 kill",
+    "start": "pm2 start server.js  --watch --log ./log/pm2.log",
+    "list": "pm2 list",
+    "restart": "pm2 restart server.js",
+    "test": "npm run test:changed",
+    "start:dev": "npm run server:up",
+>>>>>>> dc81f63 (wip)
     "start:prod": "NODE_ENV=production npm run server:up",
     "start:prod:watch": "npm run start:prod -- -- --watch",
     "start:dev:watch": "npm run start:dev -- -- --watch",
@@ -34,7 +47,12 @@
     "koa-router": "10.1.1",
     "koa-static": "5.0.0",
     "nodemon": "^2.0.15",
+<<<<<<< HEAD
     "npm-run-all": "4.1.5"
+=======
+     "pm2": "^4.5.0",
+     "npm-run-all": "4.1.5"
+>>>>>>> dc81f63 (wip)
   },
   "publishConfig": {
     "access": "public"

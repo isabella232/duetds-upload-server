@@ -6,7 +6,11 @@ const config = Object.assign(
   defSettings,
   {
     configName: "development",
+<<<<<<< HEAD
     env: "development",
+=======
+    env: "development"
+>>>>>>> dc81f63 (wip)
   },
   watching
 )
