@@ -12,6 +12,7 @@ const cors = require("@koa/cors")
 const koaBody = require("koa-body")
 const koaRouter = require("koa-router")
 const koaLogger = require("koa-colorful-logger")
+const ping = require("@shopify/koa-liveness-ping");
 
 const fs = require("fs")
 const EventEmitter = require("events")
@@ -110,6 +111,9 @@ if (config.koaLog) {
 }
 //enable cors
 app.use(cors())
+
+//enable global ping response
+app.use(ping());
 
 //this file endpoint can respond with various responses depending on what the file is called
 //it looks for any HTTP status codes in the filename and will respond with the ones it knows below
