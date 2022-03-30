@@ -6,13 +6,13 @@ process.title = config.koaProcessName
 
 //require libraries
 const koa = require("koa")
+const ping = require("@shopify/koa-liveness-ping");
 const serve = require("koa-static")
 const mount = require("koa-mount")
 const cors = require("@koa/cors")
 const koaBody = require("koa-body")
 const koaRouter = require("koa-router")
 const koaLogger = require("koa-colorful-logger")
-const ping = require("@shopify/koa-liveness-ping");
 
 const fs = require("fs")
 const EventEmitter = require("events")
@@ -67,12 +67,14 @@ const setHeader = (ctx, next) => {
 
 
 // Simple liveliness / isUp handler that responds with {status: "ok"}
-async function sendOK(ctx, next) {
-  await next()
-  if (ctx.request.url == "/" || ctx.request.url == "" || ctx.request.url == "/ok") {
-    ctx.body = { status: "ok" }
-    ctx.status = 200
-  }
+function sendOK(ctx, next) {
+  return async function pingMiddleware(ctx, next) {
+    if (ctx.path === '/ping' || ctx.request.url == "/" || ctx.request.url == "") {
+      ctx.status = 200;
+      return;
+    }
+    await next();
+  };
 }
 
 //dummy implementation of a serverside upload file handler, this one just returns a fake object to fullfill client js needs
@@ -112,8 +114,8 @@ if (config.koaLog) {
 //enable cors
 app.use(cors())
 
-//enable global ping response
-app.use(ping());
+app.use(sendOK())
+
 
 //this file endpoint can respond with various responses depending on what the file is called
 //it looks for any HTTP status codes in the filename and will respond with the ones it knows below
